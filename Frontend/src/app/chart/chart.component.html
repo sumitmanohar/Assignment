@@ -1,0 +1,17 @@
+<div class="container">
+        <div class="row">
+            <div class="col">
+<div class="wrapper-class" *ngIf="enable" >
+        
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType">
+          </canvas>
+       
+      </div>
+            </div>
+            </div>
+            </div>
