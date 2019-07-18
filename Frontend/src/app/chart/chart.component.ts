@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { GlobalService } from "../providers/global.service";
+import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
     templateUrl:'./chart.component.html',
@@ -20,14 +22,16 @@ export class ChartComponent implements OnInit{
    
     data: any[]=[];
     enable: boolean;
-      constructor(public global:GlobalService){}
+      constructor(public global:GlobalService,private spinnerService: Ng4LoadingSpinnerService,private toastr: ToastrService){}
     ngOnInit(){
   this.getThermometerData()
     }
     getThermometerData(){
+      this.spinnerService.show()
         let url=this.global.basePath + '/chart';
         this.global.getRequest(url).subscribe((res:any)=>{
             this.enable=true
+            this.spinnerService.hide()
          res.data.forEach(element => {
              this.barChartLabels.push(element.month)
              this.data.push(element.value/element.count)
@@ -37,6 +41,10 @@ export class ChartComponent implements OnInit{
          
         },(err)=>{
             console.log(err)
+            this.spinnerService.hide()
+            this.toastr.error('Internal Server Error', 'Error', {
+              timeOut: 3000
+            })
         })
     }
 }
