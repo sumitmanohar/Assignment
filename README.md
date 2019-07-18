@@ -13,4 +13,4 @@ for server
 for dash
 # Visit http://localhost:4200
 
-extract rar file THERM0001.json for chart data
+extract rar file in backend server folder THERM0001.json for chart data
