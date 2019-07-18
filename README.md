@@ -1,7 +1,7 @@
 # Assignment
-Node Version 10.16.0
-Npm Version 6.9.0
-Angular CLI Version 6.1.5
+# Node Version 10.16.0
+# Npm Version 6.9.0
+# Angular CLI Version 6.1.5
 
 Usage
 $ npm install
