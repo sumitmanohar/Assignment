@@ -11,6 +11,6 @@ $ npm start
 for server
 # Visit http://localhost:5000
 for dash
-#Visit http://localhost:4200
+# Visit http://localhost:4200
 
 extract rar file THERM0001.json for chart data
