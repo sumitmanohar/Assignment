@@ -27,7 +27,7 @@ const route: Routes =[{path:'',redirectTo:'fileUpload', pathMatch:'full'},
     RouterModule.forRoot(route),
     HttpClientModule,
     ChartsModule,
-    BrowserAnimationsModule, // required animations module
+    BrowserAnimationsModule, // required animations module test
     ToastrModule.forRoot(), // ToastrModule added
     Ng4LoadingSpinnerModule.forRoot() // for spinner
   ],
