@@ -33,8 +33,8 @@ export class ChartComponent implements OnInit{
             this.enable=true
             this.spinnerService.hide()
          res.data.forEach(element => {
-             this.barChartLabels.push(element.month)
-             this.data.push(element.value/element.count)
+             this.barChartLabels.push(element._id.month)
+             this.data.push(element.meanValue)
          });
       this.barChartData=[{data:this.data,label:'Tempreature'}]
       
