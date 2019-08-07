@@ -38,8 +38,6 @@ export class ChartComponent implements OnInit{
              this.data.push(element.meanValue)
          });
       this.barChartData=[{data:this.data,label:'Tempreature'}]
-      
-         
         },(err)=>{
             console.log(err)
             this.spinnerService.hide()

@@ -11,7 +11,7 @@ var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     var dir = 'public/files';
     if (!fs.existsSync(dir))
-      fs.mkdir(dir);
+      fs.mkdirSync(dir,{ recursive: true });
     cb(null, 'public/files')
   },
   filename: function (req, file, cb) {
@@ -120,7 +120,6 @@ router.get('/chart', (req, res, next) => {
  
   ], (err, result) => {
     if (err) { res.json(500, err); }
-    console.log(result.length)
     res.send({data:result})
   })
 

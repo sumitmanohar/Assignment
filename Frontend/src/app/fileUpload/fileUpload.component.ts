@@ -34,10 +34,18 @@ export class FileUploadComponent implements OnInit{
                 timeOut: 3000
               });
         },(err)=>{
+            console.log(err)
+            if(err.status==400){
+                this.toastr.error(err.error.msg, 'Error', {
+                    timeOut: 3000
+                  }) 
+            }else{
+                this.toastr.error('Internal Server Error', 'Error', {
+                    timeOut: 3000
+                  })
+            }
             
-            this.toastr.error('Internal Server Error', 'Error', {
-                timeOut: 3000
-              })
+            
         })
 
     }
