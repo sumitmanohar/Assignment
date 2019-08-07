@@ -11,7 +11,7 @@ var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     var dir = 'public/files';
     if (!fs.existsSync(dir))
-      fs.mkdirSync(dir);
+      fs.mkdir(dir);
     cb(null, 'public/files')
   },
   filename: function (req, file, cb) {
@@ -46,7 +46,7 @@ var errorMessage=[]
       });
       return;
     }
-
+console.log(req.file.path,path.resolve(__dirname, `../public/files`))
     fs.readFile(path.resolve(__dirname, `../${req.file.path}`), 'utf8', (err, data) => {
       if (err) throw err;
       var result = JSON.parse(data)
@@ -90,12 +90,6 @@ var errorMessage=[]
     })
 
   })
-  // if (!file) {
-  //   const error = new Error('Please upload a file')
-  //   error.httpStatusCode = 400
-  //   return next(error)
-  // }
-  //   res.send({msg:'File Upload Successfully'})
 })
 
 
@@ -112,10 +106,22 @@ router.get('/chart', (req, res, next) => {
     $project: {
       meanValue: { $divide: ["$volume", "$count"] }
     }
+  },
+  {
+    $sort:{
+      
+        "_id.year":1,"_id.month":1
+       
+    }
+  },
+  {
+    $limit:12
   }
+ 
   ], (err, result) => {
     if (err) { res.json(500, err); }
-    res.send({ data: result })
+    console.log(result.length)
+    res.send({data:result})
   })
 
 
