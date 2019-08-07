@@ -10,16 +10,26 @@ export class FileUploadComponent implements OnInit{
     fileToUpload: File;
     failedList:any=[];
     result:any
+    isFlag:boolean
 
     constructor(public global:GlobalService,private toastr: ToastrService){}
     ngOnInit(){}
+
+
     handleFileInput(files: FileList) {
         this.fileToUpload = files.item(0);
+        
         let url =this.global.basePath + '/fileUpload'
         this.global.postFile(this.fileToUpload,url).subscribe(res=>{
             console.log(res)
             this.result=res
             this.failedList=this.result.errorData;
+            if(this.failedList.length>0){
+                this.isFlag=true
+            }else{
+                this.isFlag=false
+            }
+            console.log(this.isFlag)
             this.toastr.success('File Upload Successfully', 'Success',{
                 timeOut: 3000
               });
@@ -30,5 +40,9 @@ export class FileUploadComponent implements OnInit{
               })
         })
 
+    }
+
+    close(){
+        this.isFlag=false  
     }
 }

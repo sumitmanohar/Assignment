@@ -13,8 +13,9 @@ export class ChartComponent implements OnInit{
         scaleShowVerticalLines: false,
         responsive: true
       };
+      graphLabels=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     
-    public barChartLabels=[]
+    public barChartLabels= [];
       public barChartType = 'bar';
       public barChartLegend = true;
       public barChartData=[]
@@ -33,7 +34,7 @@ export class ChartComponent implements OnInit{
             this.enable=true
             this.spinnerService.hide()
          res.data.forEach(element => {
-             this.barChartLabels.push(element._id.month)
+              this.barChartLabels.push(`${this.graphLabels[element._id.month-1]},${element._id.year}`)
              this.data.push(element.meanValue)
          });
       this.barChartData=[{data:this.data,label:'Tempreature'}]
